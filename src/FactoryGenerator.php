@@ -10,6 +10,7 @@ use Naoray\EloquentModelAnalyzer\Column;
 use Naoray\EloquentModelAnalyzer\RelationMethod;
 use PhpParser\NodeFinder;
 use PhpParser\ParserFactory;
+use PhpParser\PhpVersion;
 
 class FactoryGenerator
 {
@@ -311,6 +312,9 @@ class FactoryGenerator
             $line = $class->getStartLine() + 1; // add 1 due to import above
             $found = false;
             while (!$found) {
+				if(!isset($lines[$line])) {
+					throw new \Exception($modelClass);
+				}
                 $found = Str::contains($lines[$line], '{'); // found closing curly
                 ++$line; // advance one more line to place the trait...
             }
