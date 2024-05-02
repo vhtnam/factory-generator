@@ -286,7 +286,7 @@ class FactoryGenerator
 
         $path = (new \ReflectionClass($modelClass))->getFileName();
 
-        $parser = (new ParserFactory)->create(ParserFactory::ONLY_PHP7);
+        $parser = (new ParserFactory)->createForVersion(PhpVersion::fromString("7.4"));
 
         $contents = File::get($path);
         $lines = explode(PHP_EOL, $contents);
